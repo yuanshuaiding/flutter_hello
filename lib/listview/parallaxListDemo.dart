@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import 'main2.dart';
+import '../main2.dart';
 
 /// 嵌套listview,滚动视差效果demo
 class ParallaxListDemo extends StatelessWidget {

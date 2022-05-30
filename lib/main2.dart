@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hello_flutter/parallaxListDemo.dart';
+import 'package:hello_flutter/listview/parallaxListDemo.dart';
 
-import 'listViewDemo.dart';
+import 'listview/listViewDemo.dart';
 import 'routes.dart';
 
 //测试用的网络图片

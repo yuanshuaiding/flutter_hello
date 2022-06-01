@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hello_flutter/listview/parallaxListDemo.dart';
+import 'package:hello_flutter/theme/GlobalThemeDemo.dart';
 
 import 'listview/listViewDemo.dart';
 import 'routes.dart';
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
         "/": (context) =>
             MyHomePage(key: Key("Flutter"), title: 'Flutter Demo Home Page'),
         LIST_DEMO: (context) => ListViewDemo(),
-        LIST_PARALLAX: (context) => ParallaxListDemo()
+        LIST_PARALLAX: (context) => ParallaxListDemo(),
+        THEME_DEMO: (context) => GlobalThemeDemo(),
       },
     );
   }
@@ -99,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
+        child: ListView(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -114,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.start,
+
           children: <Widget>[
             Text(
               'You have pushed the button this many times:',
@@ -143,7 +145,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 textAlign: TextAlign.center),
             //本地图片
             Text("加载本地图片"),
-            Image.asset("images/abnormal.png"),
+            Image.asset(
+              "images/abnormal.png",
+              height: 50,
+            ),
             //网络图片
             Text("加载网络图片"),
             Image(
@@ -154,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text("使用第三方库cached_network_image加载图片"),
             SizedBox(
-                height: 200,
+                height: 100,
                 child: CachedNetworkImage(
                   progressIndicatorBuilder: (context, url, progress) => Center(
                     child: CircularProgressIndicator(
@@ -190,7 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //跳转listview页面
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, LIST_DEMO);
+                Navigator.popAndPushNamed(context, LIST_DEMO);
                 // Navigator.push(
                 //     context,
                 //     MaterialPageRoute(
@@ -228,6 +233,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: SizedBox(
                     child: Text(
                       "跳转视差效果示例",
+                      textAlign: TextAlign.center,
+                    ),
+                    width: 160),
+              ),
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.black),
+                backgroundColor: MaterialStateProperty.resolveWith((states) {
+                  if (states.contains(MaterialState.pressed)) {
+                    return Colors.yellow[800];
+                  }
+                  return Colors.blue;
+                }),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, THEME_DEMO);
+              },
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                child: SizedBox(
+                    child: Text(
+                      "跳转主题设置Demo",
                       textAlign: TextAlign.center,
                     ),
                     width: 160),

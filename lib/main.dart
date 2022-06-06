@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
 class MyAppBar extends StatelessWidget {
   final Widget title;
 
-  MyAppBar({this.title});
+  MyAppBar({required this.title});
 
   @override
   Widget build(BuildContext context) {

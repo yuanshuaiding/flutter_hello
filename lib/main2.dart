@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hello_flutter/%E7%BB%BC%E5%90%88%E5%BA%94%E7%94%A8/%E8%B4%AD%E7%89%A9%E8%BD%A6.dart';
 import 'package:hello_flutter/listview/parallaxListDemo.dart';
 import 'package:hello_flutter/theme/GlobalThemeDemo.dart';
 
@@ -42,13 +43,14 @@ class MyApp extends StatelessWidget {
         LIST_DEMO: (context) => ListViewDemo(),
         LIST_PARALLAX: (context) => ParallaxListDemo(),
         THEME_DEMO: (context) => GlobalThemeDemo(),
+        CART: (context) => Cart(),
       },
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({required Key key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -256,6 +258,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: SizedBox(
                     child: Text(
                       "跳转主题设置Demo",
+                      textAlign: TextAlign.center,
+                    ),
+                    width: 160),
+              ),
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.black),
+                backgroundColor: MaterialStateProperty.resolveWith((states) {
+                  if (states.contains(MaterialState.pressed)) {
+                    return Colors.yellow[800];
+                  }
+                  return Colors.blue;
+                }),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, CART);
+              },
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                child: SizedBox(
+                    child: Text(
+                      "购物车",
                       textAlign: TextAlign.center,
                     ),
                     width: 160),

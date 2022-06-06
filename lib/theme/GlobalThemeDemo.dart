@@ -8,12 +8,14 @@ class GlobalThemeDemo extends StatelessWidget {
       backgroundColor: Colors.blue,
       primaryColor: Colors.blue,
       iconTheme: IconThemeData(color: Colors.grey),
-      textTheme: TextTheme(bodyText1: TextStyle(color: Colors.black),button: TextStyle(color:Colors.black12)),
+      textTheme: TextTheme(
+          bodyText1: TextStyle(color: Colors.black),
+          button: TextStyle(color: Colors.black12)),
       colorScheme: ColorScheme.fromSwatch()
           .copyWith(secondary: Colors.white, primary: Colors.blue));
 
   final theme2 = ThemeData(
-    backgroundColor: Colors.brown,
+      backgroundColor: Colors.brown,
       //(按钮)Widget 前景色为黑色
       primaryColor: Colors.amberAccent,
       // 主题色为青色
@@ -30,6 +32,7 @@ class GlobalThemeDemo extends StatelessWidget {
       title: title,
       theme: theme2,
       home: ThemeHome(
+        key: ObjectKey(key),
         title: title,
         themes: [theme1, theme2],
       ),
@@ -41,7 +44,8 @@ class ThemeHome extends StatefulWidget {
   final String title;
   final List<ThemeData> themes;
 
-  ThemeHome({Key key, this.title, this.themes}) : super(key: key);
+  ThemeHome({required Key key, required this.title, required this.themes})
+      : super(key: key);
 
   @override
   State<ThemeHome> createState() {
@@ -50,7 +54,7 @@ class ThemeHome extends StatefulWidget {
 }
 
 class _MyState extends State<ThemeHome> {
-  bool isLight;
+  late bool isLight;
 
   @override
   void initState() {
@@ -60,14 +64,14 @@ class _MyState extends State<ThemeHome> {
 
   @override
   Widget build(BuildContext context) {
-    var theme=isLight ? widget.themes[0] : widget.themes[1];
+    var theme = isLight ? widget.themes[0] : widget.themes[1];
     return Theme(
         data: theme,
         child: Scaffold(
           appBar: AppBar(
             title: Text(
               widget.title,
-              style: TextStyle(color: theme.textTheme.bodyText1.color),
+              style: TextStyle(color: theme.textTheme.bodyText1?.color),
             ),
             backgroundColor: theme.backgroundColor,
           ),

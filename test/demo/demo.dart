@@ -19,7 +19,7 @@ class Product extends Meta {
 class ShoppingCart extends Meta {
   String code;
   DateTime date;
-  List<Product> products;
+  List<Product>? products;
 
   ShoppingCart(name)
       : code = "0",
@@ -37,7 +37,7 @@ class ShoppingCart extends Meta {
   }*/
 
   //重写属性price的get方法,使用组合的方式获取价格(匿名函数)
-  double get price => products.reduce((p1, p2) => p1 + p2).price;
+  double get price => (products?.reduce((p1, p2) => p1 + p2).price) ?? 0;
 
   String getInfo() {
     return '''

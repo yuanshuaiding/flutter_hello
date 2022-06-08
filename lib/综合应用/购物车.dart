@@ -32,14 +32,13 @@ class ShoppingListItem extends StatelessWidget {
           CircleAvatar(
             backgroundColor: _getBgColor(context),
             child: Text(product.name[0]),
+            radius: 20,
           ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-            child: Text(
-              product.name,
-              style: _getStyle(context),
-            ),
-          )
+          Expanded(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                child: Text(product.name, style: _getStyle(context)),
+          )),
         ],
       ),
     );
@@ -85,7 +84,6 @@ class ShoppingListState extends State<ShoppingList> {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
       children: widget.productList.map((product) {
         var inCart = _list.contains(product);
         return ShoppingListItem(

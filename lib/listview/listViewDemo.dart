@@ -6,9 +6,16 @@ class ListViewDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-        "ListView测试页",
-      )),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).maybePop();
+          },
+        ),
+        title: Text(
+          "ListView",
+        ),
+      ),
       body: ListView.builder(
         itemCount: 100,
         shrinkWrap: true,
@@ -22,7 +29,10 @@ class ListViewDemo extends StatelessWidget {
                 color: Colors.blue[50],
                 width: MediaQuery.of(context).size.width,
               ),
-              Divider(color: Colors.black26,height: 0.5,)
+              Divider(
+                color: Colors.black26,
+                height: 0.5,
+              )
             ],
           );
           return GestureDetector(

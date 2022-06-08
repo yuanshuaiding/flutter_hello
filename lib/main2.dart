@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hello_flutter/%E7%BB%BC%E5%90%88%E5%BA%94%E7%94%A8/%E8%B4%AD%E7%89%A9%E8%BD%A6.dart';
 import 'package:hello_flutter/%E8%B7%A8%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92/InheritedWidgetDemo.dart';
 import 'package:hello_flutter/%E8%B7%A8%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92/NotificationDemo.dart';
+import 'package:hello_flutter/UnknownPage.dart';
 import 'package:hello_flutter/listview/parallaxListDemo.dart';
 import 'package:hello_flutter/theme/GlobalThemeDemo.dart';
 
@@ -47,6 +48,10 @@ class MyApp extends StatelessWidget {
         THEME_DEMO: (context) => GlobalThemeDemo(),
         CART: (context) => Cart(),
         INHERITED_DEMO: (context) => CounterHomePage(),
+      },
+      onUnknownRoute: (setting) {
+        return MaterialPageRoute(
+            builder: (BuildContext context) => UnknownPage());
       },
     );
   }
@@ -197,10 +202,38 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontSize: 16.0)
               },
             ),
+            //跳转不存在的页面
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, UNKNOWN_PAGE);
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => new ListViewDemo()));
+              },
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                child: SizedBox(
+                    child: Text(
+                      "跳转不存在的路由",
+                      textAlign: TextAlign.center,
+                    ),
+                    width: 160),
+              ),
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.black),
+                backgroundColor: MaterialStateProperty.resolveWith((states) {
+                  if (states.contains(MaterialState.pressed)) {
+                    return Colors.yellow[800];
+                  }
+                  return Colors.blue;
+                }),
+              ),
+            ),
             //跳转listview页面
             TextButton(
               onPressed: () {
-                Navigator.popAndPushNamed(context, LIST_DEMO);
+                Navigator.pushNamed(context, LIST_DEMO);
                 // Navigator.push(
                 //     context,
                 //     MaterialPageRoute(

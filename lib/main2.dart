@@ -4,6 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hello_flutter/%E7%BB%BC%E5%90%88%E5%BA%94%E7%94%A8/%E8%B4%AD%E7%89%A9%E8%BD%A6.dart';
 import 'package:hello_flutter/%E8%B7%A8%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92/InheritedWidgetDemo.dart';
 import 'package:hello_flutter/%E8%B7%A8%E7%BB%84%E4%BB%B6%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92/NotificationDemo.dart';
+import 'package:hello_flutter/%E8%B7%A8%E9%A1%B5%E9%9D%A2%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92/Page2.dart';
+import 'package:hello_flutter/%E8%B7%A8%E9%A1%B5%E9%9D%A2%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92/Page1.dart';
 import 'package:hello_flutter/UnknownPage.dart';
 import 'package:hello_flutter/listview/parallaxListDemo.dart';
 import 'package:hello_flutter/theme/GlobalThemeDemo.dart';
@@ -48,6 +50,7 @@ class MyApp extends StatelessWidget {
         THEME_DEMO: (context) => GlobalThemeDemo(),
         CART: (context) => Cart(),
         INHERITED_DEMO: (context) => CounterHomePage(),
+        ARGUMENTS_DEMO: (context) => Page2(),
       },
       onUnknownRoute: (setting) {
         return MaterialPageRoute(
@@ -335,14 +338,13 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.pushNamed(context, INHERITED_DEMO);
               },
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+              child: Container(
+                margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
                 child: SizedBox(
                     child: Text(
-                      "跨组件数据传递-InheritedWidget",
-                      textAlign: TextAlign.center,
-                    ),
-                    width: 160),
+                  "跨组件数据传递-InheritedWidget",
+                  textAlign: TextAlign.center,
+                )),
               ),
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all(Colors.black),
@@ -359,14 +361,35 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (BuildContext context) => MyNotificationWidget()));
               },
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+              child: Container(
+                margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
                 child: SizedBox(
                     child: Text(
-                      "跨组件数据传递-Notification",
-                      textAlign: TextAlign.center,
-                    ),
-                    width: 160),
+                  "跨组件数据传递-Notification",
+                  textAlign: TextAlign.center,
+                )),
+              ),
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.black),
+                backgroundColor: MaterialStateProperty.resolveWith((states) {
+                  if (states.contains(MaterialState.pressed)) {
+                    return Colors.yellow[800];
+                  }
+                  return Colors.blue;
+                }),
+              ),
+            ),TextButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => Page1()));
+              },
+              child: Container(
+                margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                child: SizedBox(
+                    child: Text(
+                  "跨页面数据传递",
+                  textAlign: TextAlign.center,
+                )),
               ),
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all(Colors.black),

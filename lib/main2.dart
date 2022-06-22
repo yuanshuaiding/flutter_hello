@@ -15,7 +15,7 @@ import 'routes.dart';
 
 //测试用的网络图片
 var networkImgUrl =
-    "https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3865120497,1233684244&fm=26&gp=0.jpg";
+    'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Fc5%2F93%2F13%2Fc59313d3c0c03fed6ae489ab745f7a2d.png&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1658028277&t=28d4dea48c5f9513d1bd76abf7a286ba';
 
 void main() {
   runApp(MyApp());

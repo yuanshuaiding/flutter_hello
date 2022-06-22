@@ -22,6 +22,7 @@ class Page1View extends StatefulWidget {
 
 class _Page1State extends State<Page1View> {
   late TextEditingController _text;
+  var result = "";
 
   @override
   void initState() {
@@ -75,6 +76,55 @@ class _Page1State extends State<Page1View> {
                   return Colors.blue;
                 })),
           ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(
+                    builder: (context) => Page2(msg: _text.text),
+                  ))
+                  .then((value) => setState(() {
+                        result = value;
+                      }));
+            },
+            child: Text("带返回参数跳转1"),
+            style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                backgroundColor:
+                    MaterialStateProperty.resolveWith<Color>((states) {
+                  if (states.contains(MaterialState.pressed)) {
+                    return Colors.yellow;
+                  }
+                  return Colors.blue;
+                })),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              var msg = await Navigator.push(context,
+                  MaterialPageRoute(builder: (context) {
+                print("启动page2");
+                return Page2(msg: _text.text);
+              }));
+              print("接收page2返回值：$msg");
+              setState(() {
+                result = msg;
+              });
+            },
+            child: Text("带返回参数跳转2"),
+            style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                backgroundColor:
+                    MaterialStateProperty.resolveWith<Color>((states) {
+                  if (states.contains(MaterialState.pressed)) {
+                    return Colors.yellow;
+                  }
+                  return Colors.blue;
+                })),
+          ),
+          if (result.isNotEmpty)
+            Text(
+              result,
+              style: TextStyle(color: Colors.red),
+            ),
         ],
       ),
     );

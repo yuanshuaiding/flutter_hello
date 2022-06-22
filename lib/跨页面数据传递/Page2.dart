@@ -18,7 +18,24 @@ class Page2 extends StatelessWidget {
           children: [
             Text("PAGE 2",
                 style: TextStyle(color: Color(0xaaccdd), fontSize: 32)),
-            Text("接收到的数据：$msg")
+            Text("接收到的数据：$msg"),
+            Text("结果：Page2 result: $msg"),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, "Page2 result: $msg");
+              },
+              child: Text("回传结果"),
+              style: ButtonStyle(
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  backgroundColor:
+                      MaterialStateProperty.resolveWith<Color>((states) {
+                    if (states.contains(MaterialState.pressed)) {
+                      return Colors.yellow;
+                    }
+                    return Colors.blue;
+                  })),
+            )
           ],
         ),
       ),

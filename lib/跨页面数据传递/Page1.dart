@@ -21,13 +21,13 @@ class Page1View extends StatefulWidget {
 }
 
 class _Page1State extends State<Page1View> {
-  late TextEditingController _text;
+  late TextEditingController _textController;
   var result = "";
 
   @override
   void initState() {
     super.initState();
-    _text = TextEditingController();
+    _textController = TextEditingController();
   }
 
   @override
@@ -41,12 +41,12 @@ class _Page1State extends State<Page1View> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)))),
-                controller: _text),
+                controller: _textController),
           ),
           ElevatedButton(
             onPressed: () {
               Navigator.of(context)
-                  .pushNamed(ARGUMENTS_DEMO, arguments: {"input", _text.text});
+                  .pushNamed(ARGUMENTS_DEMO, arguments: {"input", _textController.text});
             },
             child: Text("命名路由传参"),
             style: ButtonStyle(
@@ -62,7 +62,7 @@ class _Page1State extends State<Page1View> {
           ElevatedButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Page2(msg: _text.text),
+                builder: (context) => Page2(msg: _textController.text),
               ));
             },
             child: Text("构建路由传参"),
@@ -80,7 +80,7 @@ class _Page1State extends State<Page1View> {
             onPressed: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(
-                    builder: (context) => Page2(msg: _text.text),
+                    builder: (context) => Page2(msg: _textController.text),
                   ))
                   .then((value) => setState(() {
                         result = value;
@@ -102,7 +102,7 @@ class _Page1State extends State<Page1View> {
               var msg = await Navigator.push(context,
                   MaterialPageRoute(builder: (context) {
                 print("启动page2");
-                return Page2(msg: _text.text);
+                return Page2(msg: _textController.text);
               }));
               print("接收page2返回值：$msg");
               setState(() {
